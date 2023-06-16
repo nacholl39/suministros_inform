@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Agregar producto</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='main.css') }}">
+</head>
+<body>
+    <h1>Agregar producto</h1>
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                    <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
+    <form action="{{ url_for('add_product') }}" method="POST">
+        <div>
+            <label for="name">Nombre:</label>
+            <input type="text" id="name" name="name" required>
+        </div>
+        <div>
+            <label for="description">Descripción:</label>
+            <input type="text" id="description" name="description" required>
+        </div>
+
+        <div>
+            <label for="precio_costo">Precio de costo:</label>
+            <input type="number" id="precio_costo" name="precio_costo" step="0.01" required>
+        </div>
+
+        <div>
+            <label for="precio_venta">Precio de venta:</label>
+            <input type="number" id="precio_venta" name="precio_venta" step="0.01" required>
+        </div>
+
+
+        <div>
+            <label for="stock">Stock:</label>
+            <input type="number" id="stock" name="stock" required>
+        </div>
+
+        <div>
+            <label for="quantity">Quantity:</label>
+            <input type="number" id="quantity" name="quantity" required>
+        </div>
+
+        <div>
+            <label for="supplier">Proveedor:</label>
+            <select id="supplier" name="supplier" required>
+                {% for supplier in suppliers %}
+                    <option value="{{ supplier.id }}">{{ supplier.company_name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div>
+            <input type="submit" value="Agregar producto">
+        </div>
+    </form>
+</body>
+</html>

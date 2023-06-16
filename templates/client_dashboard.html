@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Panel de control - Cliente</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='main.css') }}">
+</head>
+<body>
+    <h1>Panel de control - Cliente</h1>
+    <h2>Productos</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Descripción</th>
+                <th>Precio venta</th>
+                <th>Stock</th>
+                <th>Proveedor</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for product in products %}
+                <tr>
+                    <td>{{ product.id }}</td>
+                    <td>{{ product.name }}</td>
+                    <td>{{ product.description }}</td>
+                    <td>{{ product.precio_venta }}</td>
+                    <td>{{ product.stock }}</td>
+                    <td>{{ product.supplier.company_name }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    
+    <h2>Low Stock Products</h2>
+    <ul>
+    {% for product in low_stock_products %}
+        <li>{{ product.name }} - Stock: {{ product.stock }} / {{ product.quantity }}</li>
+    {% endfor %}
+    </ul>
+
+    <h2>Gráficas de ventas</h2>
+    <div id="sales-chart">
+        <a href="{{ url_for('sales_chart') }}">Ver gráfico de ventas</a>
+        <div id="sales-chart-div"></div>
+    </div>
+
+
+    <p><a href="{{ url_for('logout') }}">Cerrar sesión</a></p>
+
+
+</body>
+</html>

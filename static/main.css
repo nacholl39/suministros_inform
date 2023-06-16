@@ -1,0 +1,106 @@
+/* Estilos generales */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #e6e6e6; /* Color Fondo*/
+}
+
+h1 {
+  color: #030303; /* Color títulos*/
+  margin-bottom: 20px;
+}
+
+ul.messages {
+  list-style-type: none;
+  color: red; /* Color mensajes*/
+  margin-bottom: 20px;
+}
+
+
+
+
+/* Añadido */
+
+/* Estilos para los botones */
+.button {
+  background-color: #02fd0a;
+  color: rgb(255, 0, 0);
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+}
+
+.button:hover {
+  background-color: #45a049;
+}
+
+/* Añadido ^^^^^^^^^^^^ */
+
+
+
+
+/* Estilos de la página principal */
+#content {
+  margin: 20px;
+}
+
+#content h1 {
+  color: #000000;
+}
+
+#content p {
+  margin-bottom: 10px;
+}
+
+/* Estilos de las tablas */
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th, td {
+  padding: 8px;
+  text-align: left;
+  border-bottom: 1px solid #000000;
+}
+
+th {
+  background-color: #adadad;
+}
+
+/* Estilos del formulario */
+form {
+  width: 400px;
+  margin: 0 auto;
+}
+
+form div {
+  margin-bottom: 10px;
+}
+
+label {
+  display: inline-block;
+  width: 120px;
+}
+
+input[type="text"],
+input[type="number"],
+select {
+  width: 200px;
+  padding: 5px;
+  border: 1px solid #ddd;
+  border-radius: 3px;
+}
+
+input[type="submit"] {
+  padding: 5px 10px;
+  background-color: #333;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+
+input[type="submit"]:hover {
+  background-color: #555;
+}

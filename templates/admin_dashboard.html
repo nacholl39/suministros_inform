@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Panel de control - Administrador</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='main.css') }}">
+</head>
+<body>
+    <h1>Panel de control - Administrador</h1>
+    <h2>Productos</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Descripción</th>
+                <th>Precio de costo</th>
+                <th>Precio de venta</th>
+                <th>Stock</th>
+                <th>Quantity</th>
+                <th>Proveedor</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for product in products %}
+                <tr>
+                    <td>{{ product.id }}</td>
+                    <td>{{ product.name }}</td>
+                    <td>{{ product.description }}</td>
+                    <td>{{ product.precio_costo }}</td>
+                    <td>{{ product.precio_venta }}</td>
+                    <td>{{ product.stock }}</td>
+                    <td>{{ product.quantity }}</td>
+                    <td>{{ product.supplier.company_name }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    
+    <h2>Low Stock Products</h2>
+    <ul>
+    {% for product in low_stock_products %}
+        <li>{{ product.name }} - Stock: {{ product.stock }} / {{ product.quantity }}</li>
+    {% endfor %}
+    </ul>
+
+    <h2>Proveedores</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Teléfono</th>
+                <th>Dirección</th>
+                <th>CIF</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for supplier in suppliers %}
+                <tr>
+                    <td>{{ supplier.id }}</td>
+                    <td>{{ supplier.company_name }}</td>
+                    <td>{{ supplier.phone }}</td>
+                    <td>{{ supplier.address }}</td>
+                    <td>{{ supplier.cif }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <h3>Add Sale</h3>
+    <form action="{{ url_for('add_sale') }}" method="POST">
+        <div class="form-group">
+            <label for="product">Product</label>
+            <select class="form-control" id="product" name="product" required>
+                {% for product in products %}
+                    <option value="{{ product.id }}">{{ product.name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="quantity">Quantity</label>
+            <input type="number" class="form-control" id="quantity" name="quantity" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Add Sale</button>
+    </form>
+
+
+
+    <p></p>
+
+    <div id="sales-chart">
+        <a href="{{ url_for('sales_chart') }}">
+            <button type="button">Ver gráfico de ventas por proveedor</button>
+        </a>
+        <div id="sales-chart-div"></div>
+    </div>
+    
+    <p></p>
+    
+    <div id="profits-chart">
+        <a href="{{ url_for('profits_chart') }}">
+            <button type="button">Ver gráfico de beneficios por proveedor</button>
+        </a>
+        <div id="profits-chart-div"></div>
+    </div>
+    
+    <p>
+        <a href="{{ url_for('add_product') }}">
+            <button type="button">Agregar producto</button>
+        </a>
+    </p>
+    <p>
+        <a href="{{ url_for('add_supplier') }}">
+            <button type="button">Agregar proveedor</button>
+        </a>
+    </p>
+    <p>
+        <a href="{{ url_for('logout') }}">
+            <button type="button">Cerrar sesión</button>
+        </a>
+    </p>
+</body>
+</html>
